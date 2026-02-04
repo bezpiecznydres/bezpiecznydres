@@ -5,13 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sacred Wealth Sanctuary | bezpiecznydres</title>
     
-    <link rel="icon" type="image/png" href="https://img.icons8.com/?size=512&id=fRj4bL9k2d2J&format=png">
+    <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/7594/7594464.png">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
- 
+    
     <style>
         :root {
             --bg-sand: #E7DED2;
@@ -25,76 +24,46 @@
             --font-sans: 'Inter', sans-serif;
         }
 
-        /* RESET I BAZA */
-        html, body {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            min-height: 100vh;
-            overflow-x: hidden;
-            font-family: var(--font-sans); 
-            color: var(--text-dark); 
-            line-height: 1.7;
-            background-color: var(--bg-sand); /* Kolor awaryjny */
-        }
+        /* RESET */
+        html, body { margin: 0; padding: 0; width: 100%; min-height: 100vh; font-family: var(--font-sans); color: var(--text-dark); line-height: 1.7; overflow-x: hidden; }
 
-        /* --- TŁO CANVAS (WARSTWA -999) --- */
-        body::before {
-            content: "";
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            /* Dodano ?v=final aby wymusić odświeżenie pliku */
-            background-image: url('canvas.jpg?v=final'); 
+        /* TŁO CANVAS (Link zewnętrzny - gwarancja działania) */
+        body {
+            background-color: var(--bg-sand);
+            background-image: url('https://www.transparenttextures.com/patterns/canvas-orange.png');
             background-repeat: repeat;
-            background-size: cover;
-            background-position: center;
-            opacity: 1; 
-            z-index: -999; /* Zawsze na samym spodzie */
+            background-attachment: fixed; /* Tło stoi w miejscu */
         }
 
-        /* --- DEKORACJE LIŚCIE (WARSTWA -1) --- */
+        /* WARSTWY */
+        /* Liście pod tekstem, ale nad tłem */
         .leaf-decor {
             position: fixed;
-            z-index: -1; /* Nad tłem, ale pod tekstem */
+            z-index: -1; 
             opacity: 0.15;
             pointer-events: none;
-            filter: grayscale(0.3) contrast(1.1) brightness(0.5);
+            filter: grayscale(0.2) contrast(1.1) brightness(0.6);
         }
         .leaf-1 { top: -50px; right: -80px; width: 450px; transform: rotate(150deg); }
         .leaf-2 { bottom: -50px; left: -100px; width: 600px; transform: rotate(-20deg); }
         .leaf-3 { top: 40%; right: -120px; width: 350px; transform: rotate(45deg); opacity: 0.1; }
 
-        /* --- TREŚĆ (WARSTWA 10) --- */
+        /* Treść zawsze na wierzchu */
         .container, header, section, footer {
             position: relative;
-            z-index: 10; /* Treść zawsze na wierzchu */
+            z-index: 10; 
         }
 
-        .container { 
-            max-width: 1100px; 
-            margin: 0 auto; 
-            padding: 0 30px; 
-        }
-
-        h1, h2, h3 { font-family: var(--font-serif); font-weight: 400; color: var(--text-dark); }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 30px; }
         a { text-decoration: none; color: inherit; transition: 0.3s; }
+        h1, h2, h3 { font-family: var(--font-serif); font-weight: 400; }
 
         /* HEADER */
-        header { padding: 40px 0; width: 100%; }
+        header { padding: 40px 0; }
         .nav-flex { display: flex; justify-content: space-between; align-items: center; }
         .logo { font-family: var(--font-serif); font-size: 1.5rem; font-style: italic; font-weight: 600; }
-        
         .nav-links { display: flex; gap: 40px; }
-        .nav-links a { 
-            font-size: 0.9rem; 
-            text-transform: uppercase; 
-            letter-spacing: 0.1em; 
-            color: var(--text-dark);
-            border-bottom: 1px solid transparent;
-        }
+        .nav-links a { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.1em; border-bottom: 1px solid transparent; }
         .nav-links a:hover { border-bottom-color: var(--accent-olive); color: var(--accent-olive); }
 
         /* HERO */
@@ -102,46 +71,31 @@
         .hero h1 { font-size: clamp(2.5rem, 6vw, 4.2rem); line-height: 1.1; margin-bottom: 25px; }
         .hero p { font-size: 1.2rem; color: var(--accent-olive); max-width: 580px; margin-bottom: 35px; }
 
-        /* SEKCJA O MNIE */
+        /* O MNIE */
         .section { padding: 100px 0; }
         .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 70px; align-items: center; }
-        
         .about-img-wrapper { text-align: center; }
         .about-img-wrapper img { 
-            width: 350px; 
-            height: 350px; 
-            object-fit: cover; 
-            border-radius: 50%;
-            border: 1px solid var(--gold);
-            padding: 10px;
-            background: rgba(255,255,255,0.4);
-            box-shadow: 0 25px 50px rgba(59, 47, 42, 0.1);
+            width: 350px; height: 350px; object-fit: cover; 
+            border-radius: 50%; border: 1px solid var(--gold); padding: 10px;
+            background: rgba(255,255,255,0.4); box-shadow: 0 25px 50px rgba(59, 47, 42, 0.1);
         }
 
-        /* TYTUŁ SACRED WEALTH SANCTUARY */
+        /* TYTUŁ GŁÓWNY */
         .sacred-title {
-            font-size: 3.2rem;
-            color: var(--deep-green);
-            font-style: italic;
-            margin-bottom: 30px;
-            line-height: 1.1;
-            font-family: 'Playfair Display', serif;
+            font-size: 3.2rem; color: var(--deep-green); font-style: italic;
+            margin-bottom: 30px; line-height: 1.1; font-family: 'Playfair Display', serif;
         }
 
         .ritual-quote { 
-            font-family: var(--font-serif); 
-            font-style: italic; 
-            font-size: 1.4rem; 
-            color: var(--accent-olive); 
-            margin: 35px 0; 
-            border-left: 2px solid var(--gold); 
-            padding-left: 30px; 
+            font-family: var(--font-serif); font-style: italic; font-size: 1.4rem; 
+            color: var(--accent-olive); margin: 35px 0; border-left: 2px solid var(--gold); padding-left: 30px; 
         }
 
         /* FORMULARZ */
         .contact-box { max-width: 800px; margin: 0 auto; background: var(--white); padding: 50px; border-radius: 2px; box-shadow: 0 10px 40px rgba(0,0,0,0.03); }
         .form-group { margin-bottom: 25px; }
-        .form-group label { display: block; margin-bottom: 10px; font-weight: 500; font-size: 0.95rem; color: var(--text-dark); }
+        .form-group label { display: block; margin-bottom: 10px; font-weight: 500; font-size: 0.95rem; }
         .form-control { width: 100%; padding: 15px; border: none; border-bottom: 1px solid #ddd; background: #fafafa; outline: none; font-family: var(--font-sans); font-size: 1rem; }
         .form-control:focus { border-color: var(--gold); background: #fff; }
 
@@ -152,7 +106,7 @@
         .btn { display: inline-block; padding: 18px 50px; background: var(--accent-olive); color: var(--white); border: 1px solid var(--accent-olive); cursor: pointer; letter-spacing: 0.1em; transition: 0.4s; font-size: 0.95rem; width: 100%; margin-top: 20px; }
         .btn:hover { background: transparent; color: var(--accent-olive); }
 
-        .privacy-link { text-decoration: underline; cursor: pointer; font-weight: 600; color: var(--text-dark); }
+        .privacy-link { text-decoration: underline; cursor: pointer; font-weight: 600; }
 
         /* MODAL */
         .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(59, 47, 42, 0.85); align-items: center; justify-content: center; padding: 20px; }
@@ -200,7 +154,7 @@
         <div class="container">
             <div class="about-grid">
                 <div class="about-img-wrapper">
-                    <img src="fotka.jpg?v=final" alt="Anastazja Wieczorek" onerror="this.src='https://images.unsplash.com/photo-1554118811-1e0d58224f24?q=80&w=1000&auto=format&fit=crop'">
+                    <img src="fotka.jpg?v=999" alt="Anastazja Wieczorek" onerror="this.src='https://images.unsplash.com/photo-1554118811-1e0d58224f24?q=80&w=1000&auto=format&fit=crop'">
                 </div>
                 <div class="about-text">
                     <h2 class="sacred-title">Sacred Wealth Sanctuary</h2>
@@ -231,7 +185,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label>Twój numer telefonu, abyśmy mogli/mogły wspólnie wybrać termin spotkania *</label>
+                        <label>Twój numer telefonu *</label>
                         <input type="tel" name="telefon" class="form-control" required>
                     </div>
 
@@ -244,25 +198,25 @@
                     </div>
 
                     <div class="form-group">
-                        <label>Co najbardziej skłoniło Cię do spotkania ze mną? *</label>
+                        <label>Cel spotkania? *</label>
                         <div class="radio-group">
-                            <label><input type="radio" name="cel" value="Ubezpieczenie"> Sprawdzenie lub oferta ubezpieczenia na życie / zdrowie</label>
-                            <label><input type="radio" name="cel" value="Oszczedzanie"> Oszczędzanie na cel / emeryturę / przyszłość dzieci</label>
-                            <label><input type="radio" name="cel" value="Kredyt"> Kredyt i refinansowanie</label>
+                            <label><input type="radio" name="cel" value="Ubezpieczenie"> Ubezpieczenie</label>
+                            <label><input type="radio" name="cel" value="Oszczedzanie"> Oszczędzanie</label>
+                            <label><input type="radio" name="cel" value="Kredyt"> Kredyt</label>
                             <label><input type="radio" name="cel" value="Inwestowanie"> Inwestowanie</label>
-                            <label><input type="radio" name="cel" value="Chaos"> Niepewność / chaos w finansach</label>
-                            <label><input type="radio" name="cel" value="OdZera"> Chcę poukładać swoje finanse od zera</label>
-                            <label><input type="radio" name="cel" value="Inne"> Other</label>
+                            <label><input type="radio" name="cel" value="Chaos"> Mam chaos</label>
+                            <label><input type="radio" name="cel" value="OdZera"> Zaczynam od zera</label>
+                            <label><input type="radio" name="cel" value="Inne"> Inne</label>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label>Co byłoby dla Ciebie „dobrym efektem” tej rozmowy? *</label>
+                        <label>Oczekiwany efekt?</label>
                         <textarea name="efekt" rows="3" class="form-control"></textarea>
                     </div>
 
                     <div class="form-group">
-                        <label>Czy jest coś ważnego, co chcesz, żebym wiedziała przed spotkaniem?</label>
+                        <label>Dodatkowe informacje</label>
                         <textarea name="dodatkowe" rows="2" class="form-control"></textarea>
                     </div>
 
@@ -270,7 +224,7 @@
                         <label style="display: flex; align-items: flex-start; gap: 10px; cursor: pointer;">
                             <input type="checkbox" name="zgoda" required style="margin-top: 4px; accent-color: var(--accent-olive);">
                             <span>
-                                "Wyrażam zgodę na przetwarzanie moich danych osobowych przez Anastazję Wieczorek, współpracującą z firmą Phinance (oddział Sopot, ul. Mikołaja Reja 13/15, 81-874 Sopot), w celu kontaktu i umówienia konsultacji finansowej. Zapoznałem/-am się z <span class="privacy-link" onclick="toggleModal()">Polityką prywatności</span>. Zostałem/-am poinformowany/-a o przysługujących mi prawach, w tym o prawie dostępu do moich danych, ich poprawiania oraz cofnięcia zgody." * TAK
+                                Wyrażam zgodę na przetwarzanie danych. Zapoznałem/-am się z <span class="privacy-link" onclick="toggleModal()">Polityką prywatności</span>. * TAK
                             </span>
                         </label>
                     </div>
@@ -286,7 +240,7 @@
             <span class="close-btn" onclick="toggleModal()">&times;</span>
             <h3>Polityka Prywatności</h3>
             <p><strong>Administrator:</strong> Anastazja Wieczorek, e-mail: anastazja.wieczorek@phinance.pl. Oddział Sopot, ul. Mikołaja Reja 13/15.</p>
-            <p>Twoje dane (imię, telefon, e-mail) są przetwarzane wyłącznie w celu kontaktu i umówienia bezpłatnej konsultacji. Nie są przekazywane dalej na tym etapie. Masz prawo do ich usunięcia w każdym momencie.</p>
+            <p>Dane służą tylko do kontaktu. Nie są przekazywane dalej. Możesz je usunąć w każdej chwili.</p>
         </div>
     </div>
 
