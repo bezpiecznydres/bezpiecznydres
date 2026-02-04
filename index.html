@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sacred Wealth Sanctuary | bezpiecznydres</title>
     
-    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="icon" type="image/png" href="favicon.png">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -25,13 +25,27 @@
             --font-sans: 'Inter', sans-serif;
         }
 
-        /* 🔴 TŁO: Kod szuka pliku "canvas.jpg" */
-        html {
-            background-color: var(--bg-sand);
-            background-image: url('canvas.jpg'); 
-            background-attachment: fixed;
+        /* TŁO CANVAS */
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-sand); /* Kolor awaryjny */
+        }
+        
+        /* Obrazek tła nałożony na element pseudo, żeby nie znikał */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('canvas.jpg'); /* Szuka pliku canvas.jpg */
             background-size: cover;
-            background-position: center;
+            background-repeat: repeat;
+            opacity: 0.6; /* Lekka przezroczystość tekstury */
+            z-index: -5;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; scroll-behavior: smooth; }
@@ -40,24 +54,41 @@
             font-family: var(--font-sans); 
             color: var(--text-dark); 
             line-height: 1.7; 
-            background: transparent;
-            min-height: 100vh;
             overflow-x: hidden;
         }
 
         h1, h2, h3 { font-family: var(--font-serif); font-weight: 400; color: var(--text-dark); }
         a { text-decoration: none; color: inherit; transition: 0.3s; }
 
-        /* DEKORACYJNE LIŚCIE (CIENIE) */
+        /* DEKORACYJNE LIŚCIE - Używam zewnętrznego linku, żeby na 100% były widoczne */
         .leaf-decor {
             position: fixed;
-            z-index: -1;
-            opacity: 0.12;
+            z-index: -1; /* Pod tekstem, nad tłem */
+            opacity: 0.15; /* Subtelne */
             pointer-events: none;
-            filter: grayscale(0.2) brightness(0.4);
+            filter: grayscale(0.2) contrast(1.1) brightness(0.6);
         }
-        .leaf-1 { top: -100px; right: -100px; width: 500px; transform: rotate(130deg); }
-        .leaf-2 { bottom: -50px; left: -100px; width: 600px; transform: rotate(-20deg); }
+        /* Liść prawy górny */
+        .leaf-1 { 
+            top: -50px; 
+            right: -80px; 
+            width: 400px; 
+            transform: rotate(150deg); 
+        }
+        /* Liść lewy dolny */
+        .leaf-2 { 
+            bottom: -50px; 
+            left: -100px; 
+            width: 500px; 
+            transform: rotate(-20deg); 
+        }
+        /* Liść prawy środek */
+        .leaf-3 {
+            top: 40%;
+            right: -120px;
+            width: 300px;
+            transform: rotate(45deg);
+        }
 
         .container { 
             max-width: 1100px; 
@@ -67,7 +98,7 @@
             z-index: 2; 
         }
 
-        /* HEADER */
+        /* HEADER & NAWIGACJA */
         header { padding: 40px 0; width: 100%; position: relative; z-index: 100; }
         .nav-flex { display: flex; justify-content: space-between; align-items: center; }
         .logo { font-family: var(--font-serif); font-size: 1.5rem; font-style: italic; font-weight: 600; }
@@ -92,12 +123,11 @@
         .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 70px; align-items: center; }
         
         .about-img-wrapper { text-align: center; position: relative; }
-        /* OKRĄGŁE ZDJĘCIE */
         .about-img-wrapper img { 
             width: 350px; 
             height: 350px; 
             object-fit: cover; 
-            border-radius: 50%; 
+            border-radius: 50%;
             border: 1px solid var(--gold);
             padding: 10px;
             background: rgba(255,255,255,0.4);
@@ -107,8 +137,8 @@
         /* TYTUŁ SACRED WEALTH SANCTUARY */
         .sacred-title {
             font-size: 3.2rem;
-            color: var(--deep-green); /* CIEMNA ZIELEŃ */
-            font-style: italic;       /* POCHYŁOŚĆ */
+            color: var(--deep-green);
+            font-style: italic;
             margin-bottom: 30px;
             line-height: 1.1;
             font-family: 'Playfair Display', serif;
@@ -128,166 +158,4 @@
         .contact-box { max-width: 800px; margin: 0 auto; background: var(--white); padding: 50px; border-radius: 2px; position: relative; box-shadow: 0 10px 40px rgba(0,0,0,0.03); }
         .form-group { margin-bottom: 25px; }
         .form-group label { display: block; margin-bottom: 10px; font-weight: 500; font-size: 0.95rem; color: var(--text-dark); }
-        .form-control { width: 100%; padding: 15px; border: none; border-bottom: 1px solid #ddd; background: #fafafa; outline: none; font-family: var(--font-sans); font-size: 1rem; }
-        .form-control:focus { border-color: var(--gold); background: #fff; }
-
-        .radio-group { display: flex; flex-direction: column; gap: 12px; margin-top: 5px; }
-        .radio-group label { display: flex; align-items: center; font-weight: 400; cursor: pointer; font-size: 0.95rem; }
-        .radio-group input { margin-right: 12px; accent-color: var(--accent-olive); transform: scale(1.1); }
-        
-        .btn { display: inline-block; padding: 18px 50px; background: var(--accent-olive); color: var(--white); border: 1px solid var(--accent-olive); cursor: pointer; letter-spacing: 0.1em; transition: 0.4s; font-size: 0.95rem; width: 100%; margin-top: 20px; }
-        .btn:hover { background: transparent; color: var(--accent-olive); }
-
-        .privacy-link { text-decoration: underline; cursor: pointer; font-weight: 600; color: var(--text-dark); }
-
-        /* MODAL */
-        .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(59, 47, 42, 0.85); align-items: center; justify-content: center; padding: 20px; }
-        .modal-content { background: var(--white); padding: 45px; max-width: 650px; max-height: 85vh; overflow-y: auto; position: relative; border: 1px solid var(--gold); }
-        .close-btn { position: absolute; right: 20px; top: 15px; font-size: 28px; cursor: pointer; color: var(--accent-olive); }
-
-        footer { background: var(--text-dark); color: var(--bg-sand); padding: 60px 20px; text-align: center; font-size: 0.85rem; }
-
-        @media (max-width: 768px) {
-            .about-grid { grid-template-columns: 1fr; text-align: center; }
-            .nav-links { display: none; }
-            .hero h1 { font-size: 2.5rem; }
-            .about-img-wrapper img { width: 280px; height: 280px; }
-            .sacred-title { font-size: 2.5rem; }
-        }
-    </style>
-</head>
-<body>
-
-    <img src="https://cdn.pixabay.com/photo/2021/09/16/18/27/monstera-6630656_960_720.png" class="leaf-decor leaf-1" alt="">
-    <img src="https://cdn.pixabay.com/photo/2021/09/16/18/27/monstera-6630656_960_720.png" class="leaf-decor leaf-2" alt="">
-
-    <header>
-        <div class="container nav-flex">
-            <div class="logo">bezpiecznydres</div>
-            <nav class="nav-links">
-                <a href="#o-mnie">O mnie</a>
-                <a href="#kontakt">Kontakt</a>
-            </nav>
-        </div>
-    </header>
-
-    <div class="container">
-        <section class="hero">
-            <div class="hero-content">
-                <h1>Możesz przyjść w dresie.</h1>
-                <p>Ja dopilnuję, żeby Twoja przyszłość finansowa była ogarnięta. W atmosferze ciszy, zaufania i pełnego profesjonalizmu.</p>
-                <a href="#kontakt" class="btn" style="width: auto;">Umów spokojną rozmowę</a>
-            </div>
-        </section>
-    </div>
-
-    <section id="o-mnie" class="section">
-        <div class="container">
-            <div class="about-grid">
-                <div class="about-img-wrapper">
-                    <img src="fotka.jpg" alt="Anastazja Wieczorek" onerror="this.src='https://images.unsplash.com/photo-1554118811-1e0d58224f24?q=80&w=1000&auto=format&fit=crop'">
-                </div>
-                <div class="about-text">
-                    <h2 class="sacred-title">Sacred Wealth Sanctuary</h2>
-                    
-                    <p>To bezpieczna przestrzeń bez oceniania, którą stworzyłam z myślą o osobach, które pragną spokoju, ale czują chaos w swoich finansach i nie wiedzą, od czego zacząć.</p>
-                    <div class="ritual-quote">"Luksus to świadomość, że wszystko jest na swoim miejscu."</div>
-                    <p>Jako Twoja partnerka w finansach, łączę profesjonalizm z ludzkim, miękkim podejściem. Pomagam poukładać ubezpieczenia, kredyty i oszczędności, stojąc zawsze po Twojej stronie.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="kontakt" class="section">
-        <div class="container">
-            <div class="contact-box">
-                <h2 style="text-align: center; margin-bottom: 40px;">Umów bezpłatne spotkanie</h2>
-                
-                <form action="https://formspree.io/f/mlglqzgy" method="POST">
-                    
-                    <div class="form-group">
-                        <label>Jak masz na imię? *</label>
-                        <input type="text" name="imie" class="form-control" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label>E-mail na który prześlę Ci link do rozmowy *</label>
-                        <input type="email" name="email" class="form-control" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Twój numer telefonu, abyśmy mogli/mogły wspólnie wybrać termin spotkania *</label>
-                        <input type="tel" name="telefon" class="form-control" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Bądźmy na... *</label>
-                        <div class="radio-group">
-                            <label><input type="radio" name="zwrot" value="Ty" required> Ty | Cześć</label>
-                            <label><input type="radio" name="zwrot" value="PanPani"> Pan/Pani | Dzień dobry</label>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Co najbardziej skłoniło Cię do spotkania ze mną? *</label>
-                        <div class="radio-group">
-                            <label><input type="radio" name="cel" value="Ubezpieczenie"> Sprawdzenie lub oferta ubezpieczenia na życie / zdrowie</label>
-                            <label><input type="radio" name="cel" value="Oszczedzanie"> Oszczędzanie na cel / emeryturę / przyszłość dzieci</label>
-                            <label><input type="radio" name="cel" value="Kredyt"> Kredyt i refinansowanie</label>
-                            <label><input type="radio" name="cel" value="Inwestowanie"> Inwestowanie</label>
-                            <label><input type="radio" name="cel" value="Chaos"> Niepewność / chaos w finansach</label>
-                            <label><input type="radio" name="cel" value="OdZera"> Chcę poukładać swoje finanse od zera</label>
-                            <label><input type="radio" name="cel" value="Inne"> Other</label>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Co byłoby dla Ciebie „dobrym efektem” tej rozmowy? *</label>
-                        <textarea name="efekt" rows="3" class="form-control"></textarea>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Czy jest coś ważnego, co chcesz, żebym wiedziała przed spotkaniem?</label>
-                        <textarea name="dodatkowe" rows="2" class="form-control"></textarea>
-                    </div>
-
-                    <div class="form-group" style="margin-top: 30px; font-size: 0.8rem; color: #555;">
-                        <label style="display: flex; align-items: flex-start; gap: 10px; cursor: pointer;">
-                            <input type="checkbox" name="zgoda" required style="margin-top: 4px; accent-color: var(--accent-olive);">
-                            <span>
-                                "Wyrażam zgodę na przetwarzanie moich danych osobowych przez Anastazję Wieczorek, współpracującą z firmą Phinance (oddział Sopot, ul. Mikołaja Reja 13/15, 81-874 Sopot), w celu kontaktu i umówienia konsultacji finansowej. Zapoznałem/-am się z <span class="privacy-link" onclick="toggleModal()">Polityką prywatności</span>. Zostałem/-am poinformowany/-a o przysługujących mi prawach, w tym o prawie dostępu do moich danych, ich poprawiania oraz cofnięcia zgody." * TAK
-                            </span>
-                        </label>
-                    </div>
-
-                    <button type="submit" class="btn">Wyślij zgłoszenie</button>
-                </form>
-            </div>
-        </div>
-    </section>
-
-    <div id="privacyModal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn" onclick="toggleModal()">&times;</span>
-            <h3>Polityka Prywatności</h3>
-            <p><strong>Administrator:</strong> Anastazja Wieczorek, e-mail: anastazja.wieczorek@phinance.pl. Oddział Sopot, ul. Mikołaja Reja 13/15.</p>
-            <p>Twoje dane (imię, telefon, e-mail) są przetwarzane wyłącznie w celu kontaktu i umówienia bezpłatnej konsultacji. Nie są przekazywane dalej na tym etapie. Masz prawo do ich usunięcia w każdym momencie.</p>
-        </div>
-    </div>
-
-    <footer>
-        <p>Sacred Wealth Sanctuary &copy; 2026 | Anastazja Wieczorek</p>
-    </footer>
-
-    <script>
-        function toggleModal() {
-            const m = document.getElementById("privacyModal");
-            m.style.display = (m.style.display === "flex") ? "none" : "flex";
-        }
-        window.onclick = function(event) {
-            const m = document.getElementById("privacyModal");
-            if (event.target == m) { m.style.display = "none"; }
-        }
-    </script>
-</body>
-</html>
+        .form-control { width: 100%; padding
