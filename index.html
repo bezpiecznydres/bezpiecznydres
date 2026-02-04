@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sacred Wealth Sanctuary | bezpiecznydres</title>
     
-    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="icon" type="image/png" href="https://img.icons8.com/?size=512&id=fRj4bL9k2d2J&format=png">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -25,51 +25,62 @@
             --font-sans: 'Inter', sans-serif;
         }
 
-        /* --- NAPRAWA TŁA --- */
-        body { 
-            /* 1. Kolor beżowy jako baza */
-            background-color: var(--bg-sand);
-            /* 2. Tekstura Canvas nałożona BEZPOŚREDNIO na body */
-            background-image: url('canvas.jpg'); 
-            background-repeat: repeat;
-            background-size: cover; /* Pokrywa cały ekran */
-            background-attachment: fixed; /* Tło nie rusza się przy przewijaniu */
-            
-            font-family: var(--font-sans); 
-            color: var(--text-dark); 
-            line-height: 1.7; 
+        /* RESET I BAZA */
+        html, body {
             margin: 0;
             padding: 0;
+            width: 100%;
             min-height: 100vh;
             overflow-x: hidden;
+            font-family: var(--font-sans); 
+            color: var(--text-dark); 
+            line-height: 1.7;
+            background-color: var(--bg-sand); /* Kolor awaryjny */
         }
 
-        /* WYMUSZENIE TREŚCI NA WIERZCH */
-        .container, header, section, footer {
-            position: relative;
-            z-index: 100 !important; /* Treść zawsze na górze */
+        /* --- TŁO CANVAS (WARSTWA -999) --- */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /* Dodano ?v=final aby wymusić odświeżenie pliku */
+            background-image: url('canvas.jpg?v=final'); 
+            background-repeat: repeat;
+            background-size: cover;
+            background-position: center;
+            opacity: 1; 
+            z-index: -999; /* Zawsze na samym spodzie */
         }
 
-        h1, h2, h3 { font-family: var(--font-serif); font-weight: 400; color: var(--text-dark); }
-        a { text-decoration: none; color: inherit; transition: 0.3s; }
-
-        /* DEKORACYJNE LIŚCIE - POD SPODEM */
+        /* --- DEKORACJE LIŚCIE (WARSTWA -1) --- */
         .leaf-decor {
             position: fixed;
-            z-index: 1; /* Nad tłem, ale pod tekstem (bo tekst ma 100) */
+            z-index: -1; /* Nad tłem, ale pod tekstem */
             opacity: 0.15;
             pointer-events: none;
-            filter: grayscale(0.2) contrast(1.1) brightness(0.6);
+            filter: grayscale(0.3) contrast(1.1) brightness(0.5);
         }
-        .leaf-1 { top: -50px; right: -80px; width: 400px; transform: rotate(150deg); }
+        .leaf-1 { top: -50px; right: -80px; width: 450px; transform: rotate(150deg); }
         .leaf-2 { bottom: -50px; left: -100px; width: 600px; transform: rotate(-20deg); }
-        .leaf-3 { top: 40%; right: -120px; width: 300px; transform: rotate(45deg); }
+        .leaf-3 { top: 40%; right: -120px; width: 350px; transform: rotate(45deg); opacity: 0.1; }
+
+        /* --- TREŚĆ (WARSTWA 10) --- */
+        .container, header, section, footer {
+            position: relative;
+            z-index: 10; /* Treść zawsze na wierzchu */
+        }
 
         .container { 
             max-width: 1100px; 
             margin: 0 auto; 
             padding: 0 30px; 
         }
+
+        h1, h2, h3 { font-family: var(--font-serif); font-weight: 400; color: var(--text-dark); }
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
 
         /* HEADER */
         header { padding: 40px 0; width: 100%; }
@@ -189,7 +200,7 @@
         <div class="container">
             <div class="about-grid">
                 <div class="about-img-wrapper">
-                    <img src="fotka.jpg" alt="Anastazja Wieczorek" onerror="this.src='https://images.unsplash.com/photo-1554118811-1e0d58224f24?q=80&w=1000&auto=format&fit=crop'">
+                    <img src="fotka.jpg?v=final" alt="Anastazja Wieczorek" onerror="this.src='https://images.unsplash.com/photo-1554118811-1e0d58224f24?q=80&w=1000&auto=format&fit=crop'">
                 </div>
                 <div class="about-text">
                     <h2 class="sacred-title">Sacred Wealth Sanctuary</h2>
