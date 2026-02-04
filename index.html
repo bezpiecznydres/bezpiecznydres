@@ -24,22 +24,27 @@
             --font-sans: 'Inter', sans-serif;
         }
 
-        /* RESET */
-        html, body { margin: 0; padding: 0; width: 100%; min-height: 100vh; font-family: var(--font-sans); color: var(--text-dark); line-height: 1.7; overflow-x: hidden; }
-
-        /* TŁO CANVAS (Link zewnętrzny - gwarancja działania) */
+        /* --- NAPRAWA GŁÓWNA: TŁO I TEKSTURA W JEDNYM --- */
         body {
-            background-color: var(--bg-sand);
-            background-image: url('https://www.transparenttextures.com/patterns/canvas-orange.png');
-            background-repeat: repeat;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            color: var(--text-dark);
+            font-family: var(--font-sans);
+            line-height: 1.7;
+            
+            /* TO JEST KLUCZ DO SUKCESU: */
+            background-color: var(--bg-sand); /* Kolor bazowy */
+            background-image: url('https://www.transparenttextures.com/patterns/canvas-orange.png'); /* Tekstura */
+            background-repeat: repeat; /* Powtarzanie wzoru */
             background-attachment: fixed; /* Tło stoi w miejscu */
+            /* Dzięki temu tekstura jest "wdrukowana" w kolor, nic jej nie zasłoni */
         }
 
-        /* WARSTWY */
-        /* Liście pod tekstem, ale nad tłem */
+        /* Liście dekoracyjne (Zewnętrzne linki) */
         .leaf-decor {
             position: fixed;
-            z-index: -1; 
+            z-index: 0; /* Najniższa warstwa nad tłem */
             opacity: 0.15;
             pointer-events: none;
             filter: grayscale(0.2) contrast(1.1) brightness(0.6);
@@ -48,10 +53,10 @@
         .leaf-2 { bottom: -50px; left: -100px; width: 600px; transform: rotate(-20deg); }
         .leaf-3 { top: 40%; right: -120px; width: 350px; transform: rotate(45deg); opacity: 0.1; }
 
-        /* Treść zawsze na wierzchu */
+        /* Treść strony (Musi być wyżej niż liście) */
         .container, header, section, footer {
             position: relative;
-            z-index: 10; 
+            z-index: 2; /* Treść zawsze na wierzchu */
         }
 
         .container { max-width: 1100px; margin: 0 auto; padding: 0 30px; }
@@ -62,6 +67,7 @@
         header { padding: 40px 0; }
         .nav-flex { display: flex; justify-content: space-between; align-items: center; }
         .logo { font-family: var(--font-serif); font-size: 1.5rem; font-style: italic; font-weight: 600; }
+        
         .nav-links { display: flex; gap: 40px; }
         .nav-links a { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.1em; border-bottom: 1px solid transparent; }
         .nav-links a:hover { border-bottom-color: var(--accent-olive); color: var(--accent-olive); }
@@ -71,9 +77,10 @@
         .hero h1 { font-size: clamp(2.5rem, 6vw, 4.2rem); line-height: 1.1; margin-bottom: 25px; }
         .hero p { font-size: 1.2rem; color: var(--accent-olive); max-width: 580px; margin-bottom: 35px; }
 
-        /* O MNIE */
+        /* SEKCJA O MNIE */
         .section { padding: 100px 0; }
         .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 70px; align-items: center; }
+        
         .about-img-wrapper { text-align: center; }
         .about-img-wrapper img { 
             width: 350px; height: 350px; object-fit: cover; 
@@ -81,10 +88,14 @@
             background: rgba(255,255,255,0.4); box-shadow: 0 25px 50px rgba(59, 47, 42, 0.1);
         }
 
-        /* TYTUŁ GŁÓWNY */
+        /* TYTUŁ GŁÓWNY (Ciemna zieleń, Pochyły) */
         .sacred-title {
-            font-size: 3.2rem; color: var(--deep-green); font-style: italic;
-            margin-bottom: 30px; line-height: 1.1; font-family: 'Playfair Display', serif;
+            font-size: 3.2rem; 
+            color: var(--deep-green); 
+            font-style: italic;
+            margin-bottom: 30px; 
+            line-height: 1.1; 
+            font-family: 'Playfair Display', serif;
         }
 
         .ritual-quote { 
@@ -109,7 +120,7 @@
         .privacy-link { text-decoration: underline; cursor: pointer; font-weight: 600; }
 
         /* MODAL */
-        .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(59, 47, 42, 0.85); align-items: center; justify-content: center; padding: 20px; }
+        .modal { display: none; position: fixed; z-index: 9999; left: 0; top: 0; width: 100%; height: 100%; background: rgba(59, 47, 42, 0.85); align-items: center; justify-content: center; padding: 20px; }
         .modal-content { background: var(--white); padding: 45px; max-width: 650px; max-height: 85vh; overflow-y: auto; position: relative; border: 1px solid var(--gold); }
         .close-btn { position: absolute; right: 20px; top: 15px; font-size: 28px; cursor: pointer; color: var(--accent-olive); }
 
@@ -154,7 +165,7 @@
         <div class="container">
             <div class="about-grid">
                 <div class="about-img-wrapper">
-                    <img src="fotka.jpg?v=999" alt="Anastazja Wieczorek" onerror="this.src='https://images.unsplash.com/photo-1554118811-1e0d58224f24?q=80&w=1000&auto=format&fit=crop'">
+                    <img src="fotka.jpg" alt="Anastazja Wieczorek" onerror="this.src='https://images.unsplash.com/photo-1554118811-1e0d58224f24?q=80&w=1000&auto=format&fit=crop'">
                 </div>
                 <div class="about-text">
                     <h2 class="sacred-title">Sacred Wealth Sanctuary</h2>
@@ -200,11 +211,11 @@
                     <div class="form-group">
                         <label>Cel spotkania? *</label>
                         <div class="radio-group">
-                            <label><input type="radio" name="cel" value="Ubezpieczenie"> Ubezpieczenie</label>
-                            <label><input type="radio" name="cel" value="Oszczedzanie"> Oszczędzanie</label>
-                            <label><input type="radio" name="cel" value="Kredyt"> Kredyt</label>
+                            <label><input type="radio" name="cel" value="Ubezpieczenie"> Ubezpieczenie na życie/zdrowie</label>
+                            <label><input type="radio" name="cel" value="Oszczedzanie"> Oszczędzanie / Emerytura / Dzieci</label>
+                            <label><input type="radio" name="cel" value="Kredyt"> Kredyt / Refinansowanie</label>
                             <label><input type="radio" name="cel" value="Inwestowanie"> Inwestowanie</label>
-                            <label><input type="radio" name="cel" value="Chaos"> Mam chaos</label>
+                            <label><input type="radio" name="cel" value="Chaos"> Niepewność / Chaos w finansach</label>
                             <label><input type="radio" name="cel" value="OdZera"> Zaczynam od zera</label>
                             <label><input type="radio" name="cel" value="Inne"> Inne</label>
                         </div>
