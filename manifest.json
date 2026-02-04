@@ -1,15 +1,17 @@
 {
-  "name": "bezpiecznydres Finanse",
-  "short_name": "bezpiecznydres",
-  "start_url": "./index.html",
+  "name": "Sacred Wealth Sanctuary",
+  "short_name": "SacredWealth",
+  "start_url": ".",
   "display": "standalone",
   "background_color": "#E7DED2",
-  "theme_color": "#D6CBBE",
+  "theme_color": "#5E6B55",
+  "description": "Finansowy spokój w rytuale ciszy.",
   "icons": [
     {
-      "src": "https://via.placeholder.com/192", 
-      "sizes": "192x192",
-      "type": "image/png"
+      "src": "favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
     }
   ]
 }
