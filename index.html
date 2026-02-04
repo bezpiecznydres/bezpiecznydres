@@ -14,14 +14,14 @@
 
     <style>
         :root {
-            --bg-sand: #E7DED2;       /* Soft Sand */
-            --bg-stone: #D6CBBE;      /* Warm Stone */
-            --text-dark: #3B2F2A;     /* Dark Cocoa */
-            --accent-olive: #5E6B55;  /* Olive Shadow */
-            --gold: #B8A26D;          /* Muted Gold */
-            --white: #F9F7F5;         /* Bone White */
-            --font-serif: 'Playfair Display', serif; /* */
-            --font-sans: 'Inter', sans-serif; /* */
+            --bg-sand: #E7DED2;
+            --bg-stone: #D6CBBE;
+            --text-dark: #3B2F2A;
+            --accent-olive: #5E6B55;
+            --gold: #B8A26D;
+            --white: #F9F7F5;
+            --font-serif: 'Playfair Display', serif;
+            --font-sans: 'Inter', sans-serif;
         }
 
         /* TEKSTURA CANVAS NA CAŁYM TLE */
@@ -43,16 +43,16 @@
 
         h1, h2, h3 { font-family: var(--font-serif); font-weight: 400; color: var(--text-dark); }
         
-        /* DEKORACYJNE LIŚCIE DŻUNGLI */
+        /* DEKORACYJNE CIEMNE LIŚCIE */
         .leaf {
-            position: absolute;
-            z-index: 0;
-            opacity: 0.12;
+            position: fixed;
+            z-index: 1;
+            opacity: 0.15;
             pointer-events: none;
-            filter: brightness(0.4) grayscale(0.5);
+            filter: brightness(0.3) grayscale(0.4);
         }
-        .leaf-top { top: -50px; right: -100px; width: 450px; transform: rotate(160deg); }
-        .leaf-bottom { bottom: 10%; left: -150px; width: 500px; transform: rotate(20deg); }
+        .leaf-1 { top: -5%; right: -10%; width: 400px; transform: rotate(150deg); }
+        .leaf-2 { bottom: -5%; left: -10%; width: 500px; transform: rotate(-20deg); }
 
         .container { max-width: 1100px; margin: 0 auto; padding: 0 30px; position: relative; z-index: 10; }
 
@@ -63,23 +63,23 @@
         .nav-links { display: flex; gap: 40px; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.1em; }
 
         /* HERO */
-        .hero { padding: 100px 0; min-height: 70vh; display: flex; align-items: center; }
+        .hero { padding: 100px 0; min-height: 60vh; display: flex; align-items: center; }
         .hero h1 { font-size: clamp(2.5rem, 6vw, 4.5rem); line-height: 1.1; margin-bottom: 25px; }
         .hero p { font-size: 1.15rem; color: var(--accent-olive); max-width: 550px; margin-bottom: 35px; }
 
-        /* SEKCJA O MNIE + OKRĄGŁE ZDJĘCIE */
-        .section { padding: 100px 0; position: relative; }
+        /* O MNIE + OKRĄGŁE ZDJĘCIE */
+        .section { padding: 80px 0; position: relative; }
         .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
-        .about-img-wrapper { position: relative; text-align: center; }
+        .about-img-wrapper { text-align: center; }
         .about-img-wrapper img { 
             width: 320px; 
             height: 320px; 
             object-fit: cover; 
             border-radius: 50%; /* OKRĄGŁA RAMKA */
             border: 1px solid var(--gold);
-            padding: 8px;
-            background: rgba(255,255,255,0.3);
-            box-shadow: 0 15px 45px rgba(59, 47, 42, 0.1);
+            padding: 10px;
+            background: rgba(255,255,255,0.2);
+            box-shadow: 0 20px 50px rgba(59, 47, 42, 0.15);
         }
 
         .ritual-quote { 
@@ -96,23 +96,126 @@
         .contact-box { max-width: 750px; margin: 0 auto; background: var(--white); padding: 50px; border-radius: 2px; }
         .form-group { margin-bottom: 25px; }
         .form-group label { display: block; margin-bottom: 8px; font-weight: 500; font-size: 0.9rem; }
-        .form-control { width: 100%; padding: 15px; border: none; border-bottom: 1px solid #ddd; background: #fafafa; font-family: var(--font-sans); font-size: 1rem; outline: none; transition: 0.3s; }
-        .form-control:focus { border-color: var(--gold); background: #fff; }
+        .form-control { width: 100%; padding: 15px; border: none; border-bottom: 1px solid #ddd; background: #fafafa; outline: none; font-family: var(--font-sans); }
         
         .btn { display: inline-block; padding: 18px 45px; background: var(--accent-olive); color: var(--white); border: none; cursor: pointer; letter-spacing: 0.1em; transition: 0.4s; font-size: 0.9rem; border: 1px solid var(--accent-olive); }
         .btn:hover { background: transparent; color: var(--accent-olive); }
 
-        .privacy-link { text-decoration: underline; cursor: pointer; font-weight: 600; color: var(--text-dark); }
+        .privacy-link { text-decoration: underline; cursor: pointer; font-weight: 600; }
 
-        /* MODAL RODO */
+        /* MODAL */
         .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(59, 47, 42, 0.7); align-items: center; justify-content: center; padding: 20px; }
         .modal-content { background: var(--white); padding: 40px; max-width: 650px; max-height: 85vh; overflow-y: auto; position: relative; border: 1px solid var(--gold); }
         .close-btn { position: absolute; right: 20px; top: 15px; font-size: 28px; cursor: pointer; color: var(--accent-olive); }
 
-        footer { background: var(--text-dark); color: var(--bg-sand); padding: 60px 20px; text-align: center; font-size: 0.8rem; letter-spacing: 0.05em; }
+        footer { background: var(--text-dark); color: var(--bg-sand); padding: 60px 20px; text-align: center; font-size: 0.8rem; }
 
         @media (max-width: 768px) {
             .about-grid { grid-template-columns: 1fr; text-align: center; }
             .nav-links { display: none; }
             .hero h1 { font-size: 2.8rem; }
-            .about-img-wrapper img { width: 260px; height: 260px; }
+            .about-img-wrapper img { width: 250px; height: 250px; }
+        }
+    </style>
+</head>
+<body>
+
+    <img src="https://www.transparentpng.com/download/tropical-leaves/tropical-leaves-png-images-21.png" class="leaf leaf-1" alt="">
+    <img src="https://www.transparentpng.com/download/tropical-leaves/tropical-leaves-png-images-21.png" class="leaf leaf-2" alt="">
+
+    <header>
+        <div class="container nav-flex">
+            <div class="logo">bezpiecznydres</div>
+            <nav class="nav-links">
+                <a href="#o-mnie">O mnie</a>
+                <a href="#kontakt">Kontakt</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Możesz przyjść w dresie.</h1>
+                <p>Ja dopilnuję, żeby Twoja przyszłość finansowa była ogarnięta. W atmosferze ciszy, zaufania i pełnego profesjonalizmu.</p>
+                <a href="#kontakt" class="btn">Umów spokojną rozmowę</a>
+            </div>
+        </section>
+    </div>
+
+    <section id="o-mnie" class="section">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-img-wrapper">
+                    <img src="ja.jpeg" alt="Anastazja Wieczorek" onerror="this.src='https://images.unsplash.com/photo-1554118811-1e0d58224f24?q=80&w=1000&auto=format&fit=crop'">
+                </div>
+                <div class="about-text">
+                    <h2>Finansowy Spokój & Sacred Wealth</h2>
+                    <p>Współpraca ze mną to rytuał, nie sprzedaż. Pomagam poukładać chaos w ubezpieczeniach i oszczędnościach, dając Ci jasną mapę na lata.</p>
+                    <div class="ritual-quote">"Luksus to świadomość, że wszystko jest na swoim miejscu."</div>
+                    <p>Jako Twoja partnerka w finansach, łączę profesjonalizm z ludzkim podejściem. Dla Ciebie współpraca jest bezpłatna — stoję po Twojej stronie.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="kontakt" class="section">
+        <div class="container">
+            <div class="contact-box">
+                <h2 style="text-align: center; margin-bottom: 40px;">Umów bezpłatne spotkanie</h2>
+                
+                <form action="https://formspree.io/f/mlglqzgy" method="POST">
+                    <div class="form-group">
+                        <label>Jak masz na imię? *</label>
+                        <input type="text" name="imie" class="form-control" required placeholder="Twoje imię">
+                    </div>
+                    <div class="form-group">
+                        <label>E-mail *</label>
+                        <input type="email" name="email" class="form-control" required placeholder="adres@mail.com">
+                    </div>
+                    <div class="form-group">
+                        <label>Telefon *</label>
+                        <input type="tel" name="telefon" class="form-control" required placeholder="Numer telefonu">
+                    </div>
+
+                    <div class="form-group" style="font-size: 0.85rem; margin-top: 30px;">
+                        <label style="display: flex; align-items: flex-start; gap: 10px; cursor: pointer;">
+                            <input type="checkbox" required style="margin-top: 5px; accent-color: var(--accent-olive);">
+                            <span>Wyrażam zgodę na przetwarzanie danych przez Anastazję Wieczorek w celu umówienia konsultacji. Zapoznałem/-am się z <span class="privacy-link" onclick="toggleModal()">Polityką prywatności</span>. * TAK</span>
+                        </label>
+                    </div>
+
+                    <div style="text-align: center; margin-top: 40px;">
+                        <button type="submit" class="btn" style="width: 100%;">Wyślij zgłoszenie</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <div id="privacyModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="toggleModal()">&times;</span>
+            <h3>Polityka Prywatności</h3>
+            <p><strong>Administrator:</strong> Anastazja Wieczorek, e-mail: anastazja.wieczorek@phinance.pl, tel.: [+48] 530 513 266. Oddział Sopot, ul. Mikołaja Reja 13/15.</p>
+            <p><strong>Cel:</strong> Kontakt i przeprowadzenie bezpłatnej konsultacji finansowej oraz przygotowanie propozycji działań.</p>
+            <p><strong>Prawa:</strong> Masz prawo do wglądu, poprawiania, usunięcia („prawo do bycia zapomnianym”) oraz cofnięcia zgody w dowolnym momencie.</p>
+        </div>
+    </div>
+
+    <footer>
+        <p>Sacred Wealth Sanctuary &copy; 2026 | Anastazja Wieczorek | Phinance S.A. Oddział Sopot</p>
+    </footer>
+
+    <script>
+        function toggleModal() {
+            const m = document.getElementById("privacyModal");
+            m.style.display = (m.style.display === "flex") ? "none" : "flex";
+        }
+        window.onclick = function(event) {
+            const m = document.getElementById("privacyModal");
+            if (event.target == m) { m.style.display = "none"; }
+        }
+    </script>
+</body>
+</html>
